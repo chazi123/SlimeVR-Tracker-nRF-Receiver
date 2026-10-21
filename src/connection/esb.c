@@ -259,7 +259,8 @@ int esb_initialize(bool tx)
 		config.event_handler = event_handler;
 		// config.bitrate = ESB_BITRATE_2MBPS;
 		// config.crc = ESB_CRC_16BIT;
-		config.tx_output_power = 30;
+		// +8 dBm is the highest valid value for nrf_esb_tx_power_t (the FEM gain is applied on top)
+		config.tx_output_power = 8;
 		// config.retransmit_delay = 600;
 		config.retransmit_count = 0;
 		config.tx_mode = ESB_TXMODE_MANUAL;
@@ -274,7 +275,8 @@ int esb_initialize(bool tx)
 		config.event_handler = event_handler;
 		// config.bitrate = ESB_BITRATE_2MBPS;
 		// config.crc = ESB_CRC_16BIT;
-		config.tx_output_power = 30;
+		// +8 dBm is the highest valid value for nrf_esb_tx_power_t (the FEM gain is applied on top)
+		config.tx_output_power = 8;
 		// config.retransmit_delay = 600;
 		// config.retransmit_count = 3;
 		// config.tx_mode = ESB_TXMODE_AUTO;
