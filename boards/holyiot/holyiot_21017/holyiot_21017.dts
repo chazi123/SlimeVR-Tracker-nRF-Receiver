@@ -41,7 +41,11 @@
 	};
 
 	nrf_radio_fem: skyFem {
-        compatible = "skyworks,sky66112-11", "generic-fem-two-ctrl-pins";
+        /* NCS matches the FEM driver on the literal "radio-fem-two-ctrl-pins"
+         * compatible (see nrf/subsys/mpsl/fem/Kconfig), so the old
+         * "generic-fem-two-ctrl-pins" string left MPSL_FEM_SIMPLE_GPIO
+         * unselectable and the PA/LNA was never driven. */
+        compatible = "skyworks,sky66112-11", "radio-fem-two-ctrl-pins";
         ctx-gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
         ctx-settle-time-us = <1>;
         crx-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
