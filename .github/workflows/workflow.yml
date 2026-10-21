@@ -288,6 +288,12 @@ jobs:
 
           mv SlimeVR-Tracker-nRF/build/SlimeVR-Tracker-nRF/zephyr/zephyr.${{ matrix.boards.fileformat }} Releases/${{ matrix.boards.filename }}.${{ matrix.boards.fileformat }}
 
+          echo "===== FEM / MPSL / ESB config dump ====="
+          grep -E "^CONFIG_(MPSL|ESB|NRFX_GPIOTE|NRFX_GPPI|CLOCK_CONTROL_NRF)" SlimeVR-Tracker-nRF/build/SlimeVR-Tracker-nRF/zephyr/.config || true
+          echo "===== FEM symbols in the image ====="
+          grep -iE "mpsl_fem|fem_simple_gpio|esb_fem" SlimeVR-Tracker-nRF/build/SlimeVR-Tracker-nRF/zephyr/zephyr.map | head -30 || true
+          echo "===== end of dump ====="
+
       - name: 💾 Upload Artifact - ${{ matrix.boards.boardname }}
         id: upload-artifact
         if: ${{ steps.build-firmware.outcome == 'success' }}
